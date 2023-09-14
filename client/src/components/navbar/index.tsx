@@ -3,20 +3,22 @@ import Container from "../container";
 import Search from "../search";
 
 const itemStyle = `                                                 
-  relative before:content-[''] before:w-full before:h-1 before:-mb-1 before:absolute before:bottom-0 before:left-0 before:bg-accent-500  before:scale-0 before:transition before:transition-all before:duration-500 before:origin-left hover:before:scale-100
+  relative before:content-[''] before:w-full before:h-1 before:-mb-1 before:absolute before:bottom-0 
+  before:left-0 before:bg-accent-500  before:scale-0 before:transition before:transition-all 
+  before:duration-500 before:origin-left hover:before:scale-75
   `;
 
 const active = `
-  before:scale-100
+  before:scale-75
 `;
 
 const Navbar = () => {
   return (
-    <header className="py-5 bg-primary-500">
+    <header className="fixed w-full py-5 bg-primary-500">
       <Container>
         <div className="flex justify-between items-center ">
           <div className="text-3xl font-bold text-white">
-            MIKE<span className="text-accent-500 ">SHOP</span>
+            MIKE<span className="text-accent-500">SHOP</span>
           </div>
           <Search />
           <nav>

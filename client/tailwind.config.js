@@ -16,8 +16,8 @@ export default {
         "primary-500": "#032353",
         "button-hover": "#",
       },
-      backgroundImage: () => ({
-        /*  "home-desktop": "url('./assets/homeGraphic.png')", */
+      backgroundImage: (theme) => ({
+        "home-desktop": "url('./assets/homeBgGraphic.png')",
       }),
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

@@ -1,19 +1,18 @@
 import React from "react";
-import Hero from "./components/Hero";
 import SEO from "../../components/seo";
 
-const title = "Shop now - Mike shop";
+const title = "Login - Mike shop";
 const desc = "MERN stack ecommerce project";
 const keywords = "react, typescript, node, mongodb";
 const author = "Youngking";
 
-const Home = () => {
+const Login = () => {
   return (
-    <main>
+    <main className="py-60 text-center">
       <SEO title={title} desc={desc} keywords={keywords} author={author} />
-      <Hero />
+      Login
     </main>
   );
 };
 
-export default Home;
+export default Login;
