@@ -10,7 +10,8 @@ export const createUserHandler = async (req: Request<{}, {}, IUser>, res: Respon
     res.status(201).json({ user, token });
   } catch (err: any) {
     log.error(err);
-    res.status(500).json({ message: 'Unknown error occurred', error: err });
+    const message = err instanceof Error ? err.message : 'Unknown error ocurred';
+    res.status(400).json({ message, error: err });
   }
 };
 
@@ -23,6 +24,7 @@ export const loginUserHandler = async (req: Request, res: Response) => {
     res.status(201).json({ user, token });
   } catch (err: any) {
     log.error(err);
-    res.status(500).json({ message: 'Unknown error occurred', error: err });
+    const message = err instanceof Error ? err.message : 'Unknown error ocurred';
+    res.status(500).json({ message, error: err });
   }
 };

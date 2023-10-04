@@ -1,18 +1,16 @@
-import React from "react";
 import Container from "../../../components/container";
 import homeGraphic1 from "../../../assets/homeGraphic1.png";
-import homeGraphic2 from "../../../assets/homeGraphic2.png";
 import homeGraphic3 from "../../../assets/homeGraphic3.png";
 
 const circle = `w-52 h-52 rounded-full  relative flex justify-center items-center bg-white 
-            before:content-{} before:absolute before:top-2 before:right-2 before:bottom-2 before:left-2
-            before:rounded-full before:border-4 before:border-dashed before:border-black`;
+  before:content-{} before:absolute before:top-2 before:right-2 before:bottom-2 before:left-2
+  before:rounded-full before:border-4 before:border-dashed before:border-black`;
 
 const Hero = () => {
   return (
-    <section className="w-full h-screen pt-32">
+    <section className="w-full pt-32 pb-5">
       <Container>
-        <div className="w-full h-72 px-5 flex items-center gap-8 test">
+        <div className="w-full h-72 px-5 flex items-center gap-8 bg-secondary-500">
           <div>
             <img src={homeGraphic1} alt="homeGraphic1" />
           </div>

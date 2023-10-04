@@ -14,7 +14,7 @@ const active = `
 
 const Navbar = () => {
   return (
-    <header className="fixed w-full py-5 z-40 bg-primary-500">
+    <header className="fixed w-full py-5 z-40 bg-primary-700">
       <Container>
         <div className="flex justify-between items-center ">
           <div className="text-3xl font-bold text-white">
