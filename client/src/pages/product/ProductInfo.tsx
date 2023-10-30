@@ -1,39 +1,35 @@
 import Button from "../../components/button";
+import Counter from "../../components/counter";
+import { Product } from "../../types";
 
 const heading = "font-bold capitalize";
 
-const ProductInfo = () => {
+interface IProduct {
+  product: Product | undefined;
+}
+
+const ProductInfo = ({ product }: IProduct) => {
   return (
     <div className="flex-1">
       <div className="flex flex-col gap-2">
         <p>
-          <span className={`${heading}`}>Product name:</span> Black Fashion
-          Jacket
+          <span className={`${heading}`}>Product name:</span> {product?.title}
         </p>
         <p>
-          <span className={`${heading}`}>Brand:</span> apple
+          <span className={`${heading}`}>Brand:</span> {product?.brand}
         </p>
         <p>
-          <span className={`${heading}`}>Price:</span> $5000
+          <span className={`${heading}`}>Price:</span> ${product?.price}
         </p>
         <p>
-          <span className={`${heading}`}>Category:</span> phone
+          <span className={`${heading}`}>Category:</span> {product?.category}
         </p>
         <div>
           <h2 className={`${heading}`}>About this item</h2>
-          <p>
-            This is the best and latest iPhone 13 pro max, is the one of the
-            best Apple product in 2023. It comes with different unique features
-            like, sliding, swiping, with maximum privacy and security. It also
-            comes with the best camera and good resolution.
-          </p>
+          <p>{product?.desc}</p>
         </div>
         <div className="flex items-center gap-5 mt-10">
-          <div className="w-40 px-5 py-2 flex items-center justify-between rounded-full shadow bg-white">
-            <span>-</span>
-            <span>2</span>
-            <span>+</span>
-          </div>
+          <Counter />
           <Button type="button" bg="bg-primary-400" rounded>
             Add to cart
           </Button>

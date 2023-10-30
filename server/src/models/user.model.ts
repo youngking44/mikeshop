@@ -10,6 +10,7 @@ const UserSchema = new Schema(
     phone: { type: String, required: true, trim: true },
     address: { type: String, required: true, trim: true },
     isAdmin: { type: Boolean, default: false },
+    token: { type: String, default: '' },
   },
   { timestamps: true },
 );

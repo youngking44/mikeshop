@@ -6,6 +6,7 @@ interface IProp {
   bg?: string;
   size?: string;
   rounded?: boolean;
+  width?: string;
   children: React.ReactNode;
 }
 
@@ -15,12 +16,13 @@ const Button = ({
   bg,
   size,
   rounded,
+  width = "w-max",
   children,
 }: IProp) => {
   return (
     <button
       type={type}
-      className={`w-max ${size === "small" ? "px-3 py-2" : "px-8 py-2"} ${
+      className={`${width} ${size === "small" ? "px-3 py-2" : "px-8 py-2"} ${
         rounded ? "rounded-full" : "rounded-lg"
       } 
        ${bg && color} ${bg ? bg : "bg-transparent"}

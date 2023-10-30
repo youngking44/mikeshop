@@ -1,10 +1,13 @@
 import Container from "../../../components/container";
-import { products } from "../../../data";
+import Loader from "../../../components/loader";
+import { useAppSelector } from "../../../hooks/redux";
 import Product from "./Product";
 
 const Phones = () => {
+  const { products, loading } = useAppSelector((state) => state.product);
   return (
-    <section className="pb-10">
+    <section className="relative min-h-[300px] pb-10">
+      {loading && <Loader />}
       <Container>
         <h2 className="text-3xl mb-2 capitalize">Phones</h2>
         <div className="flex gap-5">
@@ -12,7 +15,7 @@ const Phones = () => {
             .filter((item) => item.category === "Phone")
             .slice(0, 4)
             .map((item) => (
-              <Product item={item} type="phone" key={item.id} />
+              <Product item={item} type="phone" key={item._id} />
             ))}
         </div>
       </Container>

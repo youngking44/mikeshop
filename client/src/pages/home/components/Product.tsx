@@ -2,13 +2,13 @@ import Button from "../../../components/button";
 
 interface IProp {
   item: {
-    id: number;
+    _id: string;
     title: string;
     desc: string;
     color: string[];
     category: string;
     brand: string;
-    price: string;
+    price: number;
     img: string;
   };
   type?: string;

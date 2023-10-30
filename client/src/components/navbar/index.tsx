@@ -27,9 +27,6 @@ const Navbar = () => {
                 <Link to="/">Home</Link>
               </li>
               <li className={`${itemStyle}`}>
-                <Link to="/categories">Categories</Link>
-              </li>
-              <li className={`${itemStyle}`}>
                 <Link to="/register">Register</Link>
               </li>
               <li className={`${itemStyle}`}>

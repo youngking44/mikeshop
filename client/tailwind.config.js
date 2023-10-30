@@ -23,6 +23,7 @@ export default {
         "secondary-500": "#d6d1e8",
         "button-hover": "#",
         error: "#ff0000",
+        loader: "#0000001A",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

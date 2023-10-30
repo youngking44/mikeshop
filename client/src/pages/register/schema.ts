@@ -21,4 +21,4 @@ export const schema = z
     path: ["confirmPassword"],
   });
 
-export type DataType = z.infer<typeof schema>;
+export type RegisterDataType = z.infer<typeof schema>;

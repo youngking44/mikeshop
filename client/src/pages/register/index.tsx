@@ -4,12 +4,12 @@ import RightWelcomeImage from "../../assets/registerGraphic1.svg";
 import LeftWelcomeImage from "../../assets/registerGraphic2.svg";
 import { useMediaQuery } from "react-responsive";
 import { BiRegistered } from "react-icons/bi";
-import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { schema, DataType } from "./schema";
+import { schema, RegisterDataType } from "./schema";
 import { createUser } from "../../redux/user/userApi";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import Loader from "../../components/loader";
 
 const title = "Sign up - Mike shop";
 const desc = "MERN stack ecommerce project";
@@ -20,31 +20,24 @@ const inputFlex = "flex flex-col gap-2";
 
 const Register = () => {
   const showLeftImage = useMediaQuery({ query: "(min-width: 990px)" });
-  const { currentUser, error } = useAppSelector((state) => state.user);
+  const { loading } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<DataType>({
+  } = useForm<RegisterDataType>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<DataType> = (data) => {
+  const onSubmit: SubmitHandler<RegisterDataType> = (data) => {
     dispatch(createUser(data));
   };
 
-  useEffect(() => {
-    const printError = () => console.log("Error...", error);
-    const printUser = () => console.log("User...", currentUser);
-
-    error && printError();
-    currentUser && printUser();
-  }, [error, currentUser]);
-
   return (
     <main className="w-full min-h-screen flex pt-44 pb-5 md:pt-20 md:pb-0 bg-secondary-400">
+      {loading && <Loader />}
       <SEO title={title} desc={desc} keywords={keywords} author={author} />
       <section className="w-full flex-1 px-5 flex items-center">
         <div
