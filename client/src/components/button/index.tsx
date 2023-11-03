@@ -7,6 +7,7 @@ interface IProp {
   size?: string;
   rounded?: boolean;
   width?: string;
+  handleClick?: () => void;
   children: React.ReactNode;
 }
 
@@ -17,6 +18,7 @@ const Button = ({
   size,
   rounded,
   width = "w-max",
+  handleClick,
   children,
 }: IProp) => {
   return (
@@ -29,6 +31,7 @@ const Button = ({
         ${!bg && "rounded-full"} ${!bg && "border-2"} ${
         !bg && "border-black"
       } `}
+      onClick={handleClick}
     >
       {children}
     </button>

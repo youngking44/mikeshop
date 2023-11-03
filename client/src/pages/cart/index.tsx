@@ -1,5 +1,6 @@
 import Container from "../../components/container";
 import SEO from "../../components/seo";
+import { useAppSelector } from "../../hooks/redux";
 import Row from "./Row";
 import Summary from "./Summary";
 import { useMediaQuery } from "react-responsive";
@@ -14,6 +15,8 @@ const tableCell = "text-left py-5";
 
 const Cart = () => {
   const mobileScreen = useMediaQuery({ query: "(max-width: 600px)" });
+  const { products } = useAppSelector((state) => state.cart);
+
   return (
     <main>
       <SEO title={title} desc={desc} keywords={keywords} author={author} />
@@ -37,9 +40,9 @@ const Cart = () => {
                     </thead>
                   )}
                   <tbody>
-                    <Row />
-                    <Row />
-                    <Row />
+                    {products?.map((item) => (
+                      <Row item={item} key={item._id} />
+                    ))}
                   </tbody>
                 </table>
               </div>

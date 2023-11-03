@@ -11,30 +11,10 @@ const Categories = () => {
       <Container>
         <h2 className="text-3xl mb-2 capitalize">Categories</h2>
         <div className="flex gap-5">
-          <Category
-            cat="watch"
-            title="Wrist watches"
-            img={Watch}
-            path="/products/cat"
-          />
-          <Category
-            cat="phone"
-            title="Phones"
-            img={Phone}
-            path="/products/cat"
-          />
-          <Category
-            cat="laptop"
-            title="Laptops"
-            img={Laptop}
-            path="/products/cat"
-          />
-          <Category
-            cat="headphone"
-            title="Headphones"
-            img={Headphone}
-            path="/products/cat"
-          />
+          <Category cat="watch" title="Wrist watches" img={Watch} />
+          <Category cat="phone" title="Phones" img={Phone} />
+          <Category cat="laptop" title="Laptops" img={Laptop} />
+          <Category cat="headphone" title="Headphones" img={Headphone} />
         </div>
       </Container>
     </section>

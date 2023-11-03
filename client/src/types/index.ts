@@ -10,3 +10,9 @@ export interface Product {
   updatedAt: Date;
   _id: string;
 }
+
+//I omitted the color array of strings property and then override it with string
+export interface CartItem extends Omit<Product, "color"> {
+  color: string;
+  quantity: number;
+}

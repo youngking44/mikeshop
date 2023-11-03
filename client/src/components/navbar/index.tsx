@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import Container from "../container";
 import Search from "../search";
+import { BsCart3 } from "react-icons/bs";
+import Badge from "../badge";
+import { useAppSelector } from "../../hooks/redux";
 
 const itemStyle = `                                                 
   relative before:content-[''] before:w-full before:h-1 before:-mb-1 before:absolute before:bottom-0 
@@ -13,6 +16,8 @@ const active = `
 `;
 
 const Navbar = () => {
+  const quantity = useAppSelector((state) => state.cart.quantity);
+
   return (
     <header className="fixed w-full py-5 z-40 bg-primary-700">
       <Container>
@@ -22,7 +27,7 @@ const Navbar = () => {
           </div>
           <Search />
           <nav>
-            <ul className="flex gap-5 font-bold text-white">
+            <ul className="flex items-center gap-5 font-bold text-white">
               <li className={`${itemStyle} ${active}`}>
                 <Link to="/">Home</Link>
               </li>
@@ -32,8 +37,12 @@ const Navbar = () => {
               <li className={`${itemStyle}`}>
                 <Link to="/login">Login</Link>
               </li>
-              <li className={`${itemStyle}`}>
-                <Link to="/cart">Cart</Link>
+              <li className="cursor-pointer">
+                <Link to="/cart">
+                  <Badge quantity={quantity}>
+                    <BsCart3 size={30} color="white" />
+                  </Badge>
+                </Link>
               </li>
             </ul>
           </nav>
