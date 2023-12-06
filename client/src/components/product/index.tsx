@@ -1,38 +1,59 @@
 import { Link } from "react-router-dom";
 import Button from "../button";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { Product as ProductType } from "../../types";
+import { addProduct } from "../../redux/cart/cartSlice";
 
-interface IProp {
-  id: string;
-  title: string;
-  desc: string;
-  price: number;
-  img: string;
+interface IProduct {
+  product: ProductType;
 }
 
-const Product = ({ id, title, desc, price, img }: IProp) => {
+const Product = ({ product }: IProduct) => {
+  const { products } = useAppSelector((state) => state.cart);
+  const cartItem = products?.find((item) => item._id === product._id);
+  const dispatch = useAppDispatch();
+
+  const handleCart = () => {
+    if (cartItem) return;
+    dispatch(addProduct({ ...product, color: product.color[0], quantity: 1 }));
+  };
+
   return (
     <div>
       <div className="p-5 bg-secondary-200">
         <div className="h-52">
-          <img className="w-full h-full object-cover" src={img} alt="" />
+          <img
+            className="w-full h-full object-cover"
+            src={product.img}
+            alt=""
+          />
         </div>
         <div className="py-5">
-          <div className="flex justify-between">
-            <span className="font-bold">{title}</span>
-            <span className="font-bold text-accent-500">{price}</span>
+          <div className="flex justify-between gap-2">
+            <span className="font-bold whitespace-nowrap overflow-hidden text-ellipsis">
+              {product.title}
+            </span>
+            <span className="font-bold text-accent-500">{product.price}</span>
           </div>
           <span className="w-56 block whitespace-nowrap opacity-90 overflow-hidden overflow-ellipsis">
-            {desc}
+            {product.desc}
           </span>
           <div className="flex justify-between gap-2 mt-2">
-            <Link to={`/products/${id}`}>
+            <Link to={`/products/${product._id}`}>
               <Button type="button" size="small" bg="bg-blue-500">
                 More Details
               </Button>
             </Link>
-            <Button type="button" size="small" bg="bg-black">
-              Add To Cart
-            </Button>
+            {!cartItem && (
+              <Button
+                type="button"
+                size="small"
+                bg="bg-black"
+                handleClick={handleCart}
+              >
+                Add To Cart
+              </Button>
+            )}
           </div>
         </div>
       </div>

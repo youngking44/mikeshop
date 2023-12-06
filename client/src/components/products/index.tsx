@@ -149,14 +149,7 @@ const Products = () => {
             )}
 
             {filteredProds.slice(0, sliceIndex).map((item) => (
-              <Product
-                id={item?._id}
-                title={item?.title}
-                desc={item?.desc}
-                price={item?.price}
-                img={item?.img}
-                key={item?._id}
-              />
+              <Product product={item} key={item?._id} />
             ))}
             {filteredProds?.length > 6 && (
               <div>

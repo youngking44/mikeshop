@@ -10,7 +10,7 @@ const Phones = () => {
       {loading && <Loader />}
       <Container>
         <h2 className="text-3xl mb-2 capitalize">Phones</h2>
-        <div className="flex gap-5">
+        <div className="w-full flex gap-5">
           {products
             .filter((item) => item.category === "Phone")
             .slice(0, 4)

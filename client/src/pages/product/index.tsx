@@ -1,6 +1,7 @@
 import Container from "../../components/container";
 import ImageGalleryOne from "../../assets/dummy/watch-image-1.jpg";
 import ImageGalleryTwo from "../../assets/dummy/watch-image-2.jpg";
+
 import ImageGalleryThree from "../../assets/dummy/watch-image-3.jpg";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import ProductInfo from "./ProductInfo";
@@ -28,6 +29,8 @@ const Product = () => {
   const product = useAppSelector((state) =>
     state.product.products?.find((item) => item._id === id)
   );
+
+  if (!product?._id) return;
 
   return (
     <main>

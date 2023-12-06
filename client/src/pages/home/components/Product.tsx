@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../../../components/button";
 
 interface IProp {
@@ -16,7 +17,7 @@ interface IProp {
 
 const Product = ({ item, type }: IProp) => {
   return (
-    <div className="flex-1 shadow-lg">
+    <div className="w-[calc(calc(100%-60px)/4)] shadow-lg">
       <div className={`w-full ${type === "phone" ? "h-96" : "h-60"}`}>
         <img
           className={`w-full h-full ${
@@ -28,16 +29,20 @@ const Product = ({ item, type }: IProp) => {
       </div>
       <div className="p-5">
         <div className="flex justify-between">
-          <span className="font-bold">{item.title}</span>
+          <span className="font-bold whitespace-nowrap overflow-hidden overflow-ellipsis">
+            {item.title}
+          </span>
           <span className="font-bold text-accent-500">{item.price}</span>
         </div>
         <span className="w-56 block whitespace-nowrap opacity-90 overflow-hidden overflow-ellipsis">
           {item.desc}
         </span>
         <div className="gap-2 mt-2">
-          <Button type="button" size="small" bg="bg-primary-500">
-            Add To Cart
-          </Button>
+          <Link to={`/products/${item._id}`}>
+            <Button type="button" size="small" bg="bg-primary-500">
+              More detail
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

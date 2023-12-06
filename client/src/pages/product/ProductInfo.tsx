@@ -14,10 +14,12 @@ interface IProduct {
 
 const ProductInfo = ({ product }: IProduct) => {
   const [color, setColor] = useState(product?.color[0]);
-  const { itemCount } = useAppSelector((state) => state.cart);
+  const { itemCount, products } = useAppSelector((state) => state.cart);
+  const cartItem = products?.find((item) => item._id === product._id);
   const dispatch = useAppDispatch();
 
   const handleCart = () => {
+    if (cartItem) return;
     dispatch(addProduct({ ...product, color, quantity: itemCount }));
   };
 
@@ -58,11 +60,12 @@ const ProductInfo = ({ product }: IProduct) => {
           <Counter itemQuantity={itemCount} path="product" id={product._id} />
           <Button
             type="button"
-            bg="bg-primary-400"
+            bg={cartItem ? "bg-red-500" : "bg-primary-400"}
             rounded
+            fade={cartItem ? "fade" : "no"}
             handleClick={handleCart}
           >
-            Add to cart
+            {cartItem ? "Added to cart" : "Add to cart"}
           </Button>
         </div>
       </div>

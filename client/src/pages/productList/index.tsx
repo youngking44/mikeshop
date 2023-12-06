@@ -12,7 +12,7 @@ const keywords = "react, typescript, node, mongodb";
 const author = "Youngking";
 
 const ProductList = () => {
-  const { products, loading, error } = useAppSelector((state) => state.product);
+  const { products } = useAppSelector((state) => state.product);
   const { search } = useLocation();
   const cat = search?.split("=")[1];
   const catList = ["phone", "watch", "laptop", "headphone"];
@@ -29,25 +29,9 @@ const ProductList = () => {
             {cat && catList.includes(cat)
               ? products
                   .filter((item) => item.category.toLowerCase() === cat)
-                  .map((item) => (
-                    <Product
-                      id={item._id}
-                      title={item.title}
-                      desc={item.desc}
-                      price={item.price}
-                      img={item.img}
-                      key={item._id}
-                    />
-                  ))
+                  .map((item) => <Product product={item} key={item._id} />)
               : products.map((item) => (
-                  <Product
-                    id={item._id}
-                    title={item.title}
-                    desc={item.desc}
-                    price={item.price}
-                    img={item.img}
-                    key={item._id}
-                  />
+                  <Product product={item} key={item._id} />
                 ))}
           </div>
         </Container>

@@ -5,6 +5,7 @@ interface IProp {
   color?: string;
   bg?: string;
   size?: string;
+  fade?: string;
   rounded?: boolean;
   width?: string;
   handleClick?: () => void;
@@ -17,6 +18,7 @@ const Button = ({
   bg,
   size,
   rounded,
+  fade,
   width = "w-max",
   handleClick,
   children,
@@ -30,7 +32,7 @@ const Button = ({
        ${bg && color} ${bg ? bg : "bg-transparent"}
         ${!bg && "rounded-full"} ${!bg && "border-2"} ${
         !bg && "border-black"
-      } `}
+      } ${fade === "fade" && "opacity-50 cursor-not-allowed"}`}
       onClick={handleClick}
     >
       {children}

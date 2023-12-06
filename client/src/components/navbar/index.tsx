@@ -22,9 +22,11 @@ const Navbar = () => {
     <header className="fixed w-full py-5 z-40 bg-primary-700">
       <Container>
         <div className="flex justify-between items-center ">
-          <div className="text-3xl font-bold text-white">
-            MIKE<span className="text-accent-500">SHOP</span>
-          </div>
+          <Link to="/">
+            <div className="text-3xl font-bold text-white">
+              MIKE<span className="text-accent-500">SHOP</span>
+            </div>
+          </Link>
           <Search />
           <nav>
             <ul className="flex items-center gap-5 font-bold text-white">
@@ -38,7 +40,7 @@ const Navbar = () => {
                 <Link to="/login">Login</Link>
               </li>
               <li className="cursor-pointer">
-                <Link to="/cart">
+                <Link to={quantity > 0 ? "/cart" : "/"}>
                   <Badge quantity={quantity}>
                     <BsCart3 size={30} color="white" />
                   </Badge>
