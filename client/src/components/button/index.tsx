@@ -32,7 +32,9 @@ const Button = ({
        ${bg && color} ${bg ? bg : "bg-transparent"}
         ${!bg && "rounded-full"} ${!bg && "border-2"} ${
         !bg && "border-black"
-      } ${fade === "fade" && "opacity-50 cursor-not-allowed"}`}
+      } ${
+        fade === "fade" && "opacity-50 cursor-not-allowed"
+      } transition-colors ease-in-out duration-300 hover:bg-opacity-70`}
       onClick={handleClick}
     >
       {children}

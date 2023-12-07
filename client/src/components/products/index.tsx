@@ -19,6 +19,12 @@ const Products = () => {
   const { products, loading, error } = useAppSelector((state) => state.product);
   const [filteredProds, setFilteredProds] = useState(products);
 
+  const handleClearFilter = () => {
+    setActive("all");
+    setBrand("all");
+    setPrice(10);
+  };
+
   const handleClick = () => {
     setSliceIndex((prevNum) => (prevNum === 6 ? 9 : 6));
   };
@@ -131,7 +137,11 @@ const Products = () => {
                 </li>
               </ul>
             </div>
-            <Button type="button" bg="bg-accent-500">
+            <Button
+              type="button"
+              bg="bg-accent-500"
+              handleClick={handleClearFilter}
+            >
               Clear filter
             </Button>
           </div>
