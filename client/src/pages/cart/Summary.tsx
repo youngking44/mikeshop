@@ -1,10 +1,16 @@
 import Button from "../../components/button";
 import { useAppSelector } from "../../hooks/redux";
+import { axiosPrivate } from "../../redux/axios";
 
 const flexBetween = "flex justify-between";
 
 const Summary = () => {
   const { total } = useAppSelector((state) => state.cart);
+
+  const handleCheckout = async () => {
+    const res = await axiosPrivate.post("/payment/checkout");
+    console.log("Backend response...", res);
+  };
 
   return (
     <div className="flex-1 lg:self-start border-2 rounded-2xl p-5">
@@ -27,7 +33,12 @@ const Summary = () => {
         <span className="font-bold">Total</span>
         <span className="text-accent-500">${total}</span>
       </div>
-      <Button type="button" bg="bg-primary-400" width="w-full">
+      <Button
+        type="button"
+        bg="bg-primary-400"
+        width="w-full"
+        handleClick={handleCheckout}
+      >
         Checkout
       </Button>
     </div>

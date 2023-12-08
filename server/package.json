@@ -26,6 +26,7 @@
     "morgan": "^1.10.0",
     "pino": "^8.15.0",
     "pino-pretty": "^10.2.0",
+    "stripe": "^14.8.0",
     "zod": "^3.22.2"
   },
   "devDependencies": {

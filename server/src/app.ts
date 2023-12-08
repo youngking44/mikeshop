@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import authRouter from './routes/auth.routes';
 import userRouter from './routes/user.routes';
 import productRouter from './routes/product.routes';
+import paymentRouter from './routes/payment.routes';
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(morgan('dev'));
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
+app.use('/api/payment', paymentRouter);
 
 app.get('/healthcheck', (req: Request, res: Response) => res.sendStatus(200));
 
