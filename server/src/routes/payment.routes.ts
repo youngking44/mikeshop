@@ -1,5 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
 import { Request, Response, Router } from 'express';
 const router = Router();
 const stripe = require('stripe')(process.env.STRIPE_KEY);
@@ -20,7 +18,7 @@ router.post('/checkout', async (req: Request, res: Response) => {
     ],
     mode: 'payment',
     success_url: `${process.env.CLIENT_URL}/checkout_success`,
-    cancel_url: `${process.env.CLIENT_UR}/cart`,
+    cancel_url: `${process.env.CLIENT_URL}/cart`,
   });
 
   res.send({ url: session.url });
