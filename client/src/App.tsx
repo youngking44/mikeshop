@@ -19,6 +19,7 @@ import ScrollToTop from "./components/scrollToTop";
 import { useAppSelector } from "./hooks/redux";
 import useRefreshToken from "./hooks/useRefreshToken";
 import { Toaster } from "react-hot-toast";
+import CheckoutSuccess from "./pages/checkoutSuccess";
 
 interface IProp {
   children: React.ReactNode;
@@ -70,6 +71,7 @@ function App() {
               />
               <Route path="/register" element={<Register />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout-success" element={<CheckoutSuccess />} />
               <Route path="/products" element={<ProductList />} />
               <Route path="/products/:id" element={<Product />} />
               <Route path="/*" element={<PageNotFound />} />

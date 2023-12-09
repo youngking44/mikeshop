@@ -5,11 +5,11 @@ import { axiosPrivate } from "../../redux/axios";
 const flexBetween = "flex justify-between";
 
 const Summary = () => {
-  const { total } = useAppSelector((state) => state.cart);
+  const { total, products } = useAppSelector((state) => state.cart);
 
   const handleCheckout = async () => {
-    const res = await axiosPrivate.post("/payment/checkout");
-    console.log("Backend response...", res);
+    // const res = await axiosPrivate.post("/payment/checkout");
+    console.log("Backend response...", products);
   };
 
   return (
