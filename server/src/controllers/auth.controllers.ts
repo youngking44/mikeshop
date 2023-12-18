@@ -43,7 +43,7 @@ export const loginUserHandler = async (req: Request, res: Response) => {
     newUser.token = refreshToken;
     await updateUser(newUser._id, newUser);
     res.cookie('jwt', refreshToken, { httpOnly: true, maxAge });
-    res.status(200).json({ ...user, token: accessToken });
+    res.status(200).json({ user, token: accessToken });
   } catch (err: any) {
     log.error(err);
     const message = err instanceof Error ? err.message : 'Unknown error ocurred';

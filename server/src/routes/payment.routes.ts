@@ -17,7 +17,7 @@ router.post('/checkout', async (req: Request, res: Response) => {
       },
     ],
     mode: 'payment',
-    success_url: `${process.env.CLIENT_URL}/checkout_success`,
+    success_url: `${process.env.CLIENT_URL}/checkout-success`,
     cancel_url: `${process.env.CLIENT_URL}/cart`,
   });
 

@@ -32,7 +32,7 @@ const userSlice = createSlice({
       })
       .addCase(createUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentUser = action.payload;
+        state.currentUser = action.payload.user;
         state.token = action.payload.token;
       })
       // eslint-disable-next-line
@@ -47,7 +47,7 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentUser = action.payload;
+        state.currentUser = action.payload.user;
         state.token = action.payload.token;
       })
       // eslint-disable-next-line

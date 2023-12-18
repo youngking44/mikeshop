@@ -5,11 +5,16 @@ import { axiosPrivate } from "../../redux/axios";
 const flexBetween = "flex justify-between";
 
 const Summary = () => {
-  const { total, products } = useAppSelector((state) => state.cart);
+  const { user, cart } = useAppSelector((state) => state);
+  console.log("Current user...", user.auth);
 
   const handleCheckout = async () => {
-    // const res = await axiosPrivate.post("/payment/checkout");
-    console.log("Backend response...", products);
+    const res = await axiosPrivate.post("/payment/checkout", {
+      cartItems: cart.products,
+      userId: user.auth.id,
+    });
+    console.log("Response...", res.data);
+    /*    console.log("Backend response...", products); */
   };
 
   return (
@@ -19,7 +24,7 @@ const Summary = () => {
       </div>
       <div className={`${flexBetween} mt-5`}>
         <span className="font-bold">Subtotal</span>
-        <span className="text-accent-500">${total}</span>
+        <span className="text-accent-500">${cart.total}</span>
       </div>
       <div className={`${flexBetween} mt-5`}>
         <span className="font-bold">Estimated shipping</span>
@@ -31,7 +36,7 @@ const Summary = () => {
       </div>
       <div className={`${flexBetween} my-5 py-5 border-y-2`}>
         <span className="font-bold">Total</span>
-        <span className="text-accent-500">${total}</span>
+        <span className="text-accent-500">${cart.total}</span>
       </div>
       <Button
         type="button"
