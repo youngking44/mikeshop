@@ -26,7 +26,8 @@ interface IProp {
 }
 
 function App() {
-  const { token, currentUser } = useAppSelector((state) => state.user);
+  const { currentUser } = useAppSelector((state) => state.user);
+  const { token } = useAppSelector((state) => state.auth);
   const { refreshToken, loading } = useRefreshToken();
   console.log("token...", token);
   console.log("Current user...", currentUser);

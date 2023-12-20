@@ -4,7 +4,7 @@ import useRefreshToken from "./useRefreshToken";
 import { useAppSelector } from "./redux";
 
 const useAxiosPrivate = () => {
-  const token = useAppSelector((state) => state.user.token);
+  const token = useAppSelector((state) => state.auth.token);
   const { refreshToken } = useRefreshToken();
 
   useEffect(() => {
