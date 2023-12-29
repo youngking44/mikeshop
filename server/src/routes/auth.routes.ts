@@ -1,4 +1,4 @@
-import { createUserHandler, loginUserHandler, refreshTokenHandler } from '../controllers/auth.controllers';
+import { createUserHandler, loginUserHandler, refreshTokenHandler } from '../controllers/auth.controller';
 import validateResource from '../middleware/validateResource';
 import { createUserSchema, loginUserSchema } from '../schema/user.schema';
 import { Router } from 'express';

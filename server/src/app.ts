@@ -21,10 +21,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan('dev'));
+app.use('/api/payment', paymentRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
-app.use('/api/payment', paymentRouter);
 
 app.get('/healthcheck', (req: Request, res: Response) => res.sendStatus(200));
 

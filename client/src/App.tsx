@@ -29,8 +29,8 @@ function App() {
   const { currentUser } = useAppSelector((state) => state.user);
   const { token } = useAppSelector((state) => state.auth);
   const { refreshToken, loading } = useRefreshToken();
-  console.log("token...", token);
-  console.log("Current user...", currentUser);
+  /*  console.log("token...", token);
+  console.log("Current user...", currentUser); */
 
   const ProtectedRoute = ({ children }: IProp) => {
     if (token) return children;

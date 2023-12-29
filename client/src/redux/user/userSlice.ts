@@ -1,9 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { createUser, loginUser } from "./userApi";
 import toast from "react-hot-toast";
+import { User } from "../../types";
 
 interface UserState {
-  currentUser: null;
+  currentUser: null | User;
   loading: boolean;
   error: string | null;
 }

@@ -6,15 +6,21 @@ const flexBetween = "flex justify-between";
 
 const Summary = () => {
   const { user, cart } = useAppSelector((state) => state);
-  console.log("Current user...", user.auth);
 
   const handleCheckout = async () => {
-    const res = await axiosPrivate.post("/payment/checkout", {
-      cartItems: cart.products,
-      userId: user.auth.id,
-    });
-    console.log("Response...", res.data);
-    /*    console.log("Backend response...", products); */
+    try {
+      const res = await axiosPrivate.post("/payment/checkout", {
+        cartItems: cart.products,
+        userId: user.currentUser?._id,
+      });
+      console.log("Response...", res.data);
+      console.log("Cart items...", cart.products);
+
+      if (!res.data.url) return;
+      window.location = res.data.url;
+    } catch (err) {
+      console.log("Something went wrong try again.");
+    }
   };
 
   return (

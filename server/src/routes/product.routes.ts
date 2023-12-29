@@ -4,7 +4,7 @@ import {
   getAllProductsHandler,
   getProductHandler,
   updateProductHandler,
-} from '../controllers/Product.controller';
+} from '../controllers/product.controller';
 import validateResource from '../middleware/validateResource';
 import { verifyTokenAndAdmin } from '../middleware/verifyToken';
 import { ProductSchema } from '../schema/product.schema';
