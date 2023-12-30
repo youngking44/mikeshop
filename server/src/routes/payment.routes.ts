@@ -1,6 +1,5 @@
 import { Request, Response, Router, raw } from 'express';
 import config from 'config';
-import log from '../utils/logger.utils';
 const router = Router();
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 
@@ -52,8 +51,7 @@ router.post('/checkout', async (req: Request, res: Response) => {
 // Stripe webhook
 
 // This is your Stripe CLI webhook secret for testing your endpoint locally.
-// const endpointSecret = config.get<string>('webhookSecret');
-const endpointSecret = 'whsec_1021415db3ed7aa12bd244cbeb009bcf1492554c0fd423ee45aa33fcacb48c5b';
+const endpointSecret = config.get<string>('webhookSecret');
 
 router.post('/webhook', raw({ type: 'application/json' }), (req, res) => {
   const sig = req.headers['stripe-signature'];
@@ -61,7 +59,8 @@ router.post('/webhook', raw({ type: 'application/json' }), (req, res) => {
   try {
     const event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
   } catch (err: unknown) {
-    log.error(`Webhook error: ${err.message}`);
+    //* PLEASE NOTE: DON'T  USE PINO LOGGER CAUSE IT WILL END THE FUNCTION, JUST USE console.log()
+    console.log(`Webhook error: ${err.message}`);
     res.status(400).send({ type: 'Webhook error', err });
   }
 
@@ -72,10 +71,10 @@ router.post('/webhook', raw({ type: 'application/json' }), (req, res) => {
     stripe.customers
       .retrieve(data.customer)
       .then((customer) => {
-        log.error('Customer....', customer);
-        log.error('Data...', data);
+        console.log('Customer....', customer);
+        console.log('Data...', data);
       })
-      .catch((err) => log.error('Error....', err.message));
+      .catch((err) => console.log('Error....', err.message));
   }
 
   res.send().end();
