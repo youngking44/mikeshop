@@ -6,15 +6,25 @@ const flexBetween = "flex justify-between";
 
 const Summary = () => {
   const { user, cart } = useAppSelector((state) => state);
+  const cartItems = cart.products?.map((item) => {
+    return {
+      title: item.title,
+      desc: item.desc,
+      color: item.color,
+      category: item.category,
+      brand: item.brand,
+      price: item.price,
+      img: item.img,
+      quantity: item.quantity,
+    };
+  });
 
   const handleCheckout = async () => {
     try {
       const res = await axiosPrivate.post("/payment/checkout", {
-        cartItems: cart.products,
+        cartItems,
         userId: user.currentUser?._id,
       });
-      console.log("Response...", res.data);
-      console.log("Cart items...", cart.products);
 
       if (!res.data.url) return;
       window.location = res.data.url;
