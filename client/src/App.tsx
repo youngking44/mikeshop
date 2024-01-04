@@ -79,7 +79,7 @@ function App() {
               <Route path="/products/:id" element={<Product />} />
               <Route path="/*" element={<PageNotFound />} />
             </Routes>
-            <Footer />
+            {/*   <Footer /> */}
           </HelmetProvider>
         </Router>
       )}

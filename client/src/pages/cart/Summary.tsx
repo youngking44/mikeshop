@@ -1,6 +1,7 @@
 import Button from "../../components/button";
 import { useAppSelector } from "../../hooks/redux";
 import { axiosPrivate } from "../../redux/axios";
+import toast from "react-hot-toast";
 
 const flexBetween = "flex justify-between";
 
@@ -29,7 +30,7 @@ const Summary = () => {
       if (!res.data.url) return;
       window.location = res.data.url;
     } catch (err) {
-      console.log("Something went wrong try again.");
+      toast.error("Something went wrong, try again....");
     }
   };
 

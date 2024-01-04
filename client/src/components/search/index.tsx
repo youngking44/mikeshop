@@ -4,7 +4,7 @@ const Search = () => {
       <input
         type="text"
         placeholder="Search"
-        className="w-72 p-2 border-none"
+        className="w-40 lg:w-72 p-2 border-none"
       />
       <button
         type="submit"

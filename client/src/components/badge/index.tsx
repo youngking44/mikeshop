@@ -13,7 +13,7 @@ const Badge = ({ quantity, children }: IProp) => {
         quantity >= 1 ? "before:visible" : "before:hidden"
       } before:content-[attr(before-dynamic-value)] before:w-[22px] before:h-[22px] 
       before:rounded-full before:absolute before:-top-3 before:-right-2 before:flex 
-      before:justify-center before:items-center before:bg-accent-400`}
+      before:justify-center before:items-center before:bg-accent-400 z-30`}
     >
       {children}
     </div>
