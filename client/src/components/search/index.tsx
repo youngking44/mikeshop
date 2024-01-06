@@ -1,6 +1,6 @@
 const Search = () => {
   return (
-    <form className="flex item-center">
+    <form className="hidden md:flex item-center">
       <input
         type="text"
         placeholder="Search"
