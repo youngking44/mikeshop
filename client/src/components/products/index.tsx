@@ -3,10 +3,10 @@ import Button from "../button";
 import { useEffect, useState } from "react";
 import Product from "../product";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { RiArrowLeftDoubleFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../hooks/redux";
 import Loader from "../loader";
+import SlideButton from "./SlideButton";
 
 const activeClass = "px-2 text-white bg-orange-300";
 const catStyle = "w-4/5 border-b-2 cursor-pointer";
@@ -15,18 +15,24 @@ const Products = () => {
   const [active, setActive] = useState("all");
   const [brand, setBrand] = useState("all");
   const [price, setPrice] = useState(10);
-  const [sliceIndex, setSliceIndex] = useState(6);
+  const [slideIndex, setSlideIndex] = useState(0);
   const { products, loading, error } = useAppSelector((state) => state.product);
   const [filteredProds, setFilteredProds] = useState(products);
+
+  const handleSlide = (type: string) => {
+    const totalSlide = Math.ceil(filteredProds.length / 3);
+
+    if (type === "next") {
+      setSlideIndex((prev) => (prev < totalSlide - 1 ? prev + 1 : prev));
+    } else {
+      setSlideIndex((prev) => (prev > 0 ? prev - 1 : prev));
+    }
+  };
 
   const handleClearFilter = () => {
     setActive("all");
     setBrand("all");
     setPrice(10);
-  };
-
-  const handleClick = () => {
-    setSliceIndex((prevNum) => (prevNum === 6 ? 9 : 6));
   };
 
   useEffect(() => {
@@ -145,11 +151,9 @@ const Products = () => {
               Clear filter
             </Button>
           </div>
-          <div
-            className={`relative flex-[4] ${
-              filteredProds.length > 0 && "grid grid-cols-3 gap-5"
-            }`}
-          >
+          {/* The reason why i used w-[calc(calc(100%/5)*4)] rather than just using flex-1 or flex-[4], is because i truncated product 
+          title. By using fix width it prevent whitespace-nowrap from expanding the size or shape of each product or flex child. */}
+          <div className="relative w-[calc(calc(100%/5)*4)]">
             {error && <p className="text-red-500">{error}</p>}
             {loading && <Loader />}
             {filteredProds.length === 0 && (
@@ -157,31 +161,24 @@ const Products = () => {
                 No Product Found!
               </div>
             )}
-
-            {filteredProds.slice(0, sliceIndex).map((item) => (
-              <Product product={item} key={item?._id} />
-            ))}
-            {filteredProds?.length > 6 && (
-              <div>
-                {sliceIndex === 6 ? (
-                  <button
-                    className="flex items-center font-bold text-accent-500 underline"
-                    onClick={handleClick}
-                  >
-                    Show More
-                    <MdKeyboardDoubleArrowRight fontSize={30} />
-                  </button>
-                ) : (
-                  <button
-                    className="flex items-center font-bold text-accent-500 underline"
-                    onClick={handleClick}
-                  >
-                    <RiArrowLeftDoubleFill fontSize={30} />
-                    Hide
-                  </button>
-                )}
+            <div className="overflow-hidden">
+              {/* I subtracted 20px flex gap i added to the product to get the exact
+              size of the Slider in translateX(calc(${slideIndex * -100}% - $
+              {20 * slideIndex}px)) */}
+              <div
+                className={`flex gap-5`}
+                style={{
+                  transform: `translateX(calc(${slideIndex * -100}% - ${
+                    20 * slideIndex
+                  }px))`,
+                }}
+              >
+                {filteredProds.map((item) => (
+                  <Product product={item} key={item?._id} />
+                ))}
               </div>
-            )}
+            </div>
+            <SlideButton handleSlide={handleSlide} />
           </div>
         </div>
       </Container>

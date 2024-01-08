@@ -24,9 +24,9 @@ const Home = () => {
   return (
     <main>
       <SEO title={title} desc={desc} keywords={keywords} author={author} />
-      {/* <Hero />
+      <Hero />
       <Products />
-      <Categories />
+      {/* <Categories />
       <LatestProducts />
       <Phones /> */}
     </main>

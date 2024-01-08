@@ -15,7 +15,7 @@ const LatestProducts = () => {
             //I used slice() method to make a shallow copy of the array and you can also use spread operator
             //before sorting it because Redux-persist put the array in frozen state
             //I also used new Date().getTime() method to convert the date object to number type in order for typescript
-            //to enable me to subtract date object
+            //to allow me to subtract date object
             products
               ?.slice()
               .sort(

@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <footer className="pt-10 text-white bg-primary-600">
       <Container>
-        <div className="flex gap-5 mb-8">
+        <div className={`flex gap-5 mb-8 flex-wrap`}>
           <div className="flex-1">
             <h2 className={`${heading}`}>Features</h2>
             <ul className={`${listItemGap}`}>
