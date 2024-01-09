@@ -19,7 +19,10 @@ const Product = ({ product }: IProduct) => {
   };
 
   return (
-    <div className="min-w-[calc(calc(100%-40px)/3)] self-start p-5 bg-secondary-200">
+    <div
+      className={`w-full lg:min-w-[calc(calc(100%-20px)/2)] xl:min-w-[calc(calc(100%-40px)/3)] 
+      self-start p-5 bg-secondary-200`}
+    >
       <div className="w-full h-52">
         <img className="w-full h-full object-cover" src={product.img} alt="" />
       </div>

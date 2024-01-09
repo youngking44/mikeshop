@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../../hooks/redux";
 import Loader from "../loader";
 import SlideButton from "./SlideButton";
+import { useMediaQuery } from "react-responsive";
 
 const activeClass = "px-2 text-white bg-orange-300";
 const catStyle = "w-4/5 border-b-2 cursor-pointer";
@@ -18,9 +19,13 @@ const Products = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const { products, loading, error } = useAppSelector((state) => state.product);
   const [filteredProds, setFilteredProds] = useState(products);
+  const tablet = useMediaQuery({ query: "(max-width: 1200px" });
+  console.log("Tablet:", tablet);
 
   const handleSlide = (type: string) => {
-    const totalSlide = Math.ceil(filteredProds.length / 3);
+    const totalSlide = tablet
+      ? Math.ceil(filteredProds.length / 2)
+      : Math.ceil(filteredProds.length / 3);
 
     if (type === "next") {
       setSlideIndex((prev) => (prev < totalSlide - 1 ? prev + 1 : prev));
@@ -153,7 +158,7 @@ const Products = () => {
           </div>
           {/* The reason why i used w-[calc(calc(100%/5)*4)] rather than just using flex-1 or flex-[4], is because i truncated product 
           title. By using fix width it prevent whitespace-nowrap from expanding the size or shape of each product or flex child. */}
-          <div className="relative w-[calc(calc(100%/5)*4)]">
+          <div className="relative w-[calc(calc(100%/3)*2)] lg:w-[calc(calc(100%/5)*4)]">
             {error && <p className="text-red-500">{error}</p>}
             {loading && <Loader />}
             {filteredProds.length === 0 && (
