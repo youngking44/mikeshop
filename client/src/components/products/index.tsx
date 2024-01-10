@@ -92,7 +92,12 @@ const Products = () => {
           {screenSize >= 768 ? (
             <h2 className="text-3xl mb-2 capitalize">Our hot products</h2>
           ) : (
-            <Button type="button" bg="bg-accent-500" handleClick={handleFilter}>
+            <Button
+              type="button"
+              size="small"
+              bg="bg-accent-500"
+              handleClick={handleFilter}
+            >
               Filter
             </Button>
           )}
@@ -104,12 +109,15 @@ const Products = () => {
             </span>
           </Link>
         </div>
-        <div className="flex gap-5 py-5 relative">
+        <div className="flex gap-5 py-5 ps-2 md:ps-0 relative overflow-hidden">
           <div
-            className={`flex-1 self-start px-5 py-7 bg-white shadow absolute md:static top-5 z-20 transition-all ease-in-out
-             duration-500 ${
-               toggleFilter ? "-translate-x-0" : "-translate-x-[100vw]"
-             }`}
+            className={`flex-1 self-start px-5 py-7 bg-white shadow absolute md:static top-5 z-20 transition-all 
+            ease-in-out duration-500 ${
+              toggleFilter
+                ? "translate-x-0"
+                : "-translate-x-[100vw] md:translate-x-0"
+            }`}
+            onClick={handleFilter}
           >
             <div className="mb-4">
               <h2 className="text-2xl font-bold opacity-80">Categories</h2>
@@ -192,8 +200,12 @@ const Products = () => {
           </div>
           {/* The reason why i used w-[calc(calc(100%/5)*4)] rather than just using flex-1 or flex-[4], is because i truncated product 
           title. By using fix width it prevent whitespace-nowrap from expanding the size or shape of each product or flex child. */}
-          <div className="relative w-[calc(calc(100%/3)*2)] lg:w-[calc(calc(100%/5)*4)]">
-            {error && <p className="text-red-500">{error}</p>}
+          <div className="relative w-full md:w-[calc(calc(100%/3)*2)] lg:w-[calc(calc(100%/5)*4)]">
+            {error && (
+              <p className="text-red-500">
+                {"Something went wrong, try again..."}
+              </p>
+            )}
             {loading && <Loader />}
             {filteredProds.length === 0 && (
               <div className="w-full h-full flex justify-center items-center bg-secondary-100">

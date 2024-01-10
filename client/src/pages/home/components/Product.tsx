@@ -17,8 +17,8 @@ interface IProp {
 
 const Product = ({ item, type }: IProp) => {
   return (
-    <div className="w-[calc(calc(100%-60px)/4)] shadow-lg">
-      <div className={`w-full ${type === "phone" ? "h-96" : "h-60"}`}>
+    <div className="min-w-full sm:min-w-[calc(calc(100%-20px)/2)] md:min-w-0 md:flex-1 shadow-lg">
+      <div className={`w-full ${type === "phone" ? "h-64 lg:h-96" : "h-60"}`}>
         <img
           className={`w-full h-full ${
             type === "phone" ? "object-contain" : "object-contain"
@@ -34,7 +34,7 @@ const Product = ({ item, type }: IProp) => {
           </span>
           <span className="font-bold text-accent-500">{item.price}</span>
         </div>
-        <span className="w-56 block whitespace-nowrap opacity-90 overflow-hidden overflow-ellipsis">
+        <span className="w-56 md:w-32 lg:w-56 block whitespace-nowrap opacity-90 overflow-hidden overflow-ellipsis">
           {item.desc}
         </span>
         <div className="gap-2 mt-2">

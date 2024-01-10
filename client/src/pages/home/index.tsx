@@ -26,9 +26,9 @@ const Home = () => {
       <SEO title={title} desc={desc} keywords={keywords} author={author} />
       <Hero />
       <Products />
-      {/* <Categories />
+      <Categories />
       <LatestProducts />
-      <Phones /> */}
+      <Phones />
     </main>
   );
 };
