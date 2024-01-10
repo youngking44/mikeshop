@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../../hooks/redux";
 import Loader from "../loader";
 import SlideButton from "./SlideButton";
-import { useMediaQuery } from "react-responsive";
 
 const activeClass = "px-2 text-white bg-orange-300";
 const catStyle = "w-4/5 border-b-2 cursor-pointer";
@@ -19,14 +18,19 @@ const Products = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const { products, loading, error } = useAppSelector((state) => state.product);
   const [filteredProds, setFilteredProds] = useState(products);
-  const tablet = useMediaQuery({ query: "(max-width: 1200px" });
-  console.log("Tablet:", tablet);
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
+  const [totalSlide, setTotalSlide] = useState(Math.ceil(filteredProds.length));
+  const [toggleFilter, setToggleFilter] = useState(false);
+
+  const handleFilter = () => setToggleFilter(!toggleFilter);
+
+  const handleClearFilter = () => {
+    setActive("all");
+    setBrand("all");
+    setPrice(10);
+  };
 
   const handleSlide = (type: string) => {
-    const totalSlide = tablet
-      ? Math.ceil(filteredProds.length / 2)
-      : Math.ceil(filteredProds.length / 3);
-
     if (type === "next") {
       setSlideIndex((prev) => (prev < totalSlide - 1 ? prev + 1 : prev));
     } else {
@@ -34,11 +38,29 @@ const Products = () => {
     }
   };
 
-  const handleClearFilter = () => {
-    setActive("all");
-    setBrand("all");
-    setPrice(10);
-  };
+  const resize = () => setScreenSize(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", resize);
+
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const updateScreen = () => {
+      if (screenSize < 992) {
+        setTotalSlide(Math.ceil(filteredProds.length));
+      } else if (screenSize < 1200) {
+        setTotalSlide(Math.ceil(filteredProds.length / 2));
+      } else {
+        setTotalSlide(Math.ceil(filteredProds.length / 3));
+      }
+    };
+
+    screenSize && updateScreen();
+  }, [screenSize, filteredProds]);
 
   useEffect(() => {
     if (active === "all" && brand === "all") {
@@ -67,7 +89,14 @@ const Products = () => {
     <section className="py-5">
       <Container>
         <div className="flex justify-between items-center">
-          <h2 className="text-3xl mb-2 capitalize">Our hot products</h2>
+          {screenSize >= 768 ? (
+            <h2 className="text-3xl mb-2 capitalize">Our hot products</h2>
+          ) : (
+            <Button type="button" bg="bg-accent-500" handleClick={handleFilter}>
+              Filter
+            </Button>
+          )}
+
           <Link to="/products">
             <span className="flex items-center font-bold text-accent-500 underline">
               All Products
@@ -75,8 +104,13 @@ const Products = () => {
             </span>
           </Link>
         </div>
-        <div className="flex gap-5 py-5">
-          <div className="flex-1 self-start px-5 py-7 shadow">
+        <div className="flex gap-5 py-5 relative">
+          <div
+            className={`flex-1 self-start px-5 py-7 bg-white shadow absolute md:static top-5 z-20 transition-all ease-in-out
+             duration-500 ${
+               toggleFilter ? "-translate-x-0" : "-translate-x-[100vw]"
+             }`}
+          >
             <div className="mb-4">
               <h2 className="text-2xl font-bold opacity-80">Categories</h2>
               <ul className="flex flex-col gap-2">
