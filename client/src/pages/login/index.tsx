@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { loginUser } from "../../redux/user/userApi";
 import LoginIcon from "./LoginIcon";
 import Loader from "../../components/loader";
+import { useNavigate } from "react-router-dom";
 
 //Meta Data
 const title = "Login - Mike shop";
@@ -21,8 +22,9 @@ const inputFlex = "flex flex-col gap-2";
 
 const Login = () => {
   const showLeftImage = useMediaQuery({ query: "(min-width: 990px)" });
-  const { loading } = useAppSelector((state) => state.user);
+  const { loading, error } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -34,6 +36,9 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<LoginDataType> = (data) => {
     dispatch(loginUser(data));
+
+    if (error) return;
+    navigate("/");
   };
 
   return (

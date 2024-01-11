@@ -20,6 +20,7 @@ const active = `
 
 const Navbar = () => {
   const quantity = useAppSelector((state) => state.cart.quantity);
+  const { token } = useAppSelector((state) => state.auth);
   const [showMenu, setShowMenu] = useState(false);
   const { pathname } = useLocation();
 
@@ -50,6 +51,7 @@ const Navbar = () => {
                 <ul
                   className="flex flex-col md:flex-row md:items-center gap-5 text-xl md:text-base 
                 px-5 md:px-0 font-bold text-black md:text-white opacity-70 md:opacity-100"
+                  onClick={() => setShowMenu(false)}
                 >
                   <li
                     className={`${itemStyle} ${
@@ -65,13 +67,15 @@ const Navbar = () => {
                   >
                     <Link to="/register">Register</Link>
                   </li>
-                  <li
-                    className={`${itemStyle} ${
-                      pathname === "/login" ? active : ""
-                    } `}
-                  >
-                    <Link to="/login">Login</Link>
-                  </li>
+                  {!token && (
+                    <li
+                      className={`${itemStyle} ${
+                        pathname === "/login" ? active : ""
+                      } `}
+                    >
+                      <Link to="/login">Login</Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </nav>

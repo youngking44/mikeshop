@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/button";
 import { useAppSelector } from "../../hooks/redux";
 import { axiosPrivate } from "../../redux/axios";
@@ -7,6 +8,9 @@ const flexBetween = "flex justify-between";
 
 const Summary = () => {
   const { user, cart } = useAppSelector((state) => state);
+  const { token } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate();
+
   const cartItems = cart.products?.map((item) => {
     return {
       title: item.title,
@@ -21,6 +25,10 @@ const Summary = () => {
   });
 
   const handleCheckout = async () => {
+    if (!token) {
+      return navigate("/login");
+    }
+
     try {
       const res = await axiosPrivate.post("/payment/checkout", {
         cartItems,
