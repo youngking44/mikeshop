@@ -14,7 +14,7 @@ const product_routes_1 = __importDefault(require("./routes/product.routes"));
 const payment_routes_1 = __importDefault(require("./routes/payment.routes"));
 const app = (0, express_1.default)();
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: 'https://youngking-mikeshop.onrender.com',
     credentials: true,
 };
 app.use(express_1.default.urlencoded({ extended: false }));

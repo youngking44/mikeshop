@@ -21,7 +21,7 @@ const dbUri = config_1.default.get('dbUri');
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, connect_1.default)(dbUri);
-        app_1.default.listen(port, () => logger_utils_1.default.info(`App running on http://localhost:${port}`));
+        app_1.default.listen(port, () => logger_utils_1.default.info(`App running on port ${port}`));
     }
     catch (err) {
         logger_utils_1.default.error(err);
