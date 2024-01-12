@@ -24,7 +24,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
-dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config();
+}
 const PORT = process.env.PORT || 1337;
 const DB_URI = process.env.DB_URI;
 const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
