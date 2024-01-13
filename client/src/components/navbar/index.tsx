@@ -42,10 +42,10 @@ const Navbar = () => {
             </Link>
             <Search />
             <nav
-              className={`w-full md:w-auto h-screen md:h-auto absolute md:static top-0 left-0 z-20
-                 ease-in duration-300 ${
-                   showMenu ? "translate-x-0" : "-translate-x-full"
-                 } md:translate-x-0`}
+              className={`w-full md:w-auto h-screen md:h-auto absolute md:static top-0 z-20
+                transition-all ease-in-out duration-300 ${
+                  showMenu ? "left-0" : "-left-full"
+                } `}
             >
               <div className="w-full h-full pt-24 md:pt-0 bg-secondary-500 md:bg-transparent">
                 <ul
