@@ -5,6 +5,7 @@ import { Product } from "../../types";
 import Color from "./Color";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { addProduct, setItemCount } from "../../redux/cart/cartSlice";
+import { useMediaQuery } from "react-responsive";
 
 const heading = "font-bold capitalize";
 
@@ -16,6 +17,7 @@ const ProductInfo = ({ product }: IProduct) => {
   const [color, setColor] = useState(product?.color[0]);
   const { itemCount, products } = useAppSelector((state) => state.cart);
   const cartItem = products?.find((item) => item._id === product._id);
+  const smallScreen = useMediaQuery({ query: "(max-width: 340px" });
   const dispatch = useAppDispatch();
 
   const handleCart = () => {
@@ -56,10 +58,15 @@ const ProductInfo = ({ product }: IProduct) => {
           <h2 className={`${heading}`}>About this item</h2>
           <p>{product?.desc}</p>
         </div>
-        <div className="flex items-center gap-5 mt-10">
+        <div
+          className={`flex ${
+            smallScreen ? "flex-col" : "flex-row items-center"
+          }  gap-5 mt-5 md:mt-10`}
+        >
           <Counter itemQuantity={itemCount} path="product" id={product._id} />
           <Button
             type="button"
+            size="small"
             bg={cartItem ? "bg-red-500" : "bg-primary-400"}
             rounded
             fade={cartItem ? "fade" : "no"}

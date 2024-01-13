@@ -1,8 +1,8 @@
 import Container from "../../components/container";
-import ImageGalleryOne from "../../assets/dummy/watch-image-1.jpg";
-import ImageGalleryTwo from "../../assets/dummy/watch-image-2.jpg";
+// import ImageGalleryOne from "../../assets/dummy/watch-image-1.jpg";
+// import ImageGalleryTwo from "../../assets/dummy/watch-image-2.jpg";
 
-import ImageGalleryThree from "../../assets/dummy/watch-image-3.jpg";
+// import ImageGalleryThree from "../../assets/dummy/watch-image-3.jpg";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import ProductInfo from "./ProductInfo";
 import SEO from "../../components/seo";
@@ -19,9 +19,9 @@ const author = "Youngking";
 
 // Tailwindcss classes
 const topButton = "flex items-center cursor-pointer";
-const galleryStyle = "w-32 h-32 mb-5 object-cover";
-const roundedBtn = `w-10 h-10 rounded-full flex justify-center items-center 
- absolute top-0 bottom-0 m-auto z-20 bg-accent-400`;
+// const galleryStyle = "w-32 h-32 mb-5 object-cover";
+// const roundedBtn = `w-10 h-10 rounded-full flex justify-center items-center
+//  absolute top-0 bottom-0 m-auto z-20 bg-accent-400`;
 
 const Product = () => {
   const { id } = useParams();
@@ -51,9 +51,9 @@ const Product = () => {
               <MdKeyboardArrowRight />
             </div>
           </div>
-          <div className="flex gap-10 pb-10">
+          <div className="flex flex-col md:flex-row gap-10 pb-10">
             <div className="flex-1 flex gap-5">
-              <div>
+              {/*        <div>
                 <img
                   className={`${galleryStyle}`}
                   src={ImageGalleryOne}
@@ -69,15 +69,19 @@ const Product = () => {
                   src={ImageGalleryThree}
                   alt=""
                 />
-              </div>
-              <div className="relative flex-1 bg-secondary-400">
-                <button className={`${roundedBtn} -left-4`}>
+              </div> */}
+              <div className="relative flex-1">
+                {/* <button className={`${roundedBtn} -left-4`}>
                   <MdKeyboardArrowLeft fontSize={25} color="#ffffff" />
-                </button>
-                <img className="w-full h-full" src={product?.img} alt=" " />
-                <button className={`${roundedBtn} -right-4`}>
+                </button> */}
+                <img
+                  className="w-full h-full md:h-3/4 object-cover md:object-contain"
+                  src={product?.img}
+                  alt=" "
+                />
+                {/* <button className={`${roundedBtn} -right-4`}>
                   <MdKeyboardArrowRight fontSize={25} color="#ffffff" />
-                </button>
+                </button> */}
               </div>
             </div>
             <ProductInfo product={product} />

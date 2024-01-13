@@ -25,7 +25,7 @@ const ProductList = () => {
           <h1 className="text-3xl my-5 capitalize">
             {cat ? cat : "All products"}
           </h1>
-          <div className="mb-10 grid grid-cols-4 gap-5">
+          <div className="mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {cat && catList.includes(cat)
               ? products
                   .filter((item) => item.category.toLowerCase() === cat)

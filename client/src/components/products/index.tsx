@@ -21,6 +21,8 @@ const Products = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const [totalSlide, setTotalSlide] = useState(Math.ceil(filteredProds.length));
   const [toggleFilter, setToggleFilter] = useState(false);
+  console.log("Products...", products);
+  console.log("Filtered products...", filteredProds);
 
   const handleFilter = () => setToggleFilter(!toggleFilter);
 
