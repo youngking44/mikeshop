@@ -21,8 +21,6 @@ const Products = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const [totalSlide, setTotalSlide] = useState(Math.ceil(filteredProds.length));
   const [toggleFilter, setToggleFilter] = useState(false);
-  console.log("Products...", products);
-  console.log("Filtered products...", filteredProds);
 
   const handleFilter = () => setToggleFilter(!toggleFilter);
 
@@ -113,7 +111,7 @@ const Products = () => {
         </div>
         <div className="flex gap-5 py-5 ps-2 md:ps-0 relative overflow-hidden">
           <div
-            className={`flex-1 self-start px-5 py-7 bg-white shadow absolute md:static top-5 z-20 transition-all 
+            className={`flex-1 self-start px-5 py-7 bg-white shadow absolute md:static top-5 z-30 transition-all 
             ease-in-out duration-500 ${
               toggleFilter
                 ? "translate-x-0"
@@ -202,7 +200,7 @@ const Products = () => {
           </div>
           {/* The reason why i used w-[calc(calc(100%/5)*4)] rather than just using flex-1 or flex-[4], is because i truncated product 
           title. By using fix width it prevent whitespace-nowrap from expanding the size or shape of each product or flex child. */}
-          <div className="relative w-full md:w-[calc(calc(100%/3)*2)] lg:w-[calc(calc(100%/5)*4)]">
+          <div className="relative w-full md:w-[calc(calc(100%/3)*2)]  min-h-[460px] lg:w-[calc(calc(100%/5)*4)]">
             {error && (
               <p className="text-red-500">
                 {"Something went wrong, try again..."}
@@ -231,7 +229,9 @@ const Products = () => {
                 ))}
               </div>
             </div>
-            <SlideButton handleSlide={handleSlide} />
+            {filteredProds.length !== 0 && (
+              <SlideButton handleSlide={handleSlide} />
+            )}
           </div>
         </div>
       </Container>

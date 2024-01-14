@@ -4,6 +4,7 @@ import Product from "../../components/product";
 import SEO from "../../components/seo";
 
 import { useAppSelector } from "../../hooks/redux";
+import Loader from "../../components/loader";
 
 // Meta data
 const title = "All products - Mike shop";
@@ -12,14 +13,15 @@ const keywords = "react, typescript, node, mongodb";
 const author = "Youngking";
 
 const ProductList = () => {
-  const { products } = useAppSelector((state) => state.product);
+  const { products, loading } = useAppSelector((state) => state.product);
   const { search } = useLocation();
   const cat = search?.split("=")[1];
   const catList = ["phone", "watch", "laptop", "headphone"];
 
   return (
-    <main className="pt-24">
+    <main className="w-full min-h-screen pt-24">
       <SEO title={title} desc={desc} keywords={keywords} author={author} />
+      {loading && <Loader />}
       <section>
         <Container>
           <h1 className="text-3xl my-5 capitalize">

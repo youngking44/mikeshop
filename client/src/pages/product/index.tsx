@@ -34,9 +34,9 @@ const Product = () => {
 
   return (
     <main>
+      <SEO title={title} desc={desc} keywords={keywords} author={author} />
       {error && toast.error("Something went wrong, refresh your browser...")}
       {loading && <Loader />}
-      <SEO title={title} desc={desc} keywords={keywords} author={author} />
       <section className="w-full min-h-screen pt-20 bg-secondary-200">
         <Container>
           <div className="py-5 flex justify-between">

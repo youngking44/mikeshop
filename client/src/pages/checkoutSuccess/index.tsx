@@ -3,6 +3,9 @@ import { BsCheck2Circle } from "react-icons/bs";
 import Button from "../../components/button";
 import { Link } from "react-router-dom";
 import SEO from "../../components/seo";
+import { useEffect } from "react";
+import { useAppDispatch } from "../../hooks/redux";
+import { resetCart } from "../../redux/cart/cartSlice";
 
 const title = "Checkout success - Mike shop";
 const desc = "MERN stack ecommerce project";
@@ -10,6 +13,11 @@ const keywords = "react, typescript, node, mongodb";
 const author = "Youngking";
 
 const CheckoutSuccess = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(resetCart());
+  }, []);
   return (
     <main className="bg-secondary-200">
       <SEO title={title} desc={desc} keywords={keywords} author={author} />
