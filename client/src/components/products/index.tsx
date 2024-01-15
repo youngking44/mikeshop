@@ -83,7 +83,7 @@ const Products = () => {
       );
     }
     setFilteredProds((prev) => prev.filter((item) => item.price >= price));
-  }, [active, brand, price]);
+  }, [active, brand, price, products]);
 
   return (
     <section className="py-5">
