@@ -6,7 +6,11 @@ import toast from "react-hot-toast";
 
 const flexBetween = "flex justify-between";
 
-const Summary = () => {
+interface IProp {
+  setLoading: (value: boolean) => void;
+}
+
+const Summary = ({ setLoading }: IProp) => {
   const { user, cart } = useAppSelector((state) => state);
   const { token } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -25,6 +29,8 @@ const Summary = () => {
   });
 
   const handleCheckout = async () => {
+    setLoading(true);
+
     if (!token) {
       return navigate("/login");
     }
@@ -38,6 +44,7 @@ const Summary = () => {
       if (!res.data.url) return;
       window.location = res.data.url;
     } catch (err) {
+      setLoading(false);
       toast.error("Something went wrong, try again....");
     }
   };

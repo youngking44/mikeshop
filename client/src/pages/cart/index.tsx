@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import Container from "../../components/container";
 import SEO from "../../components/seo";
 import { useAppSelector } from "../../hooks/redux";
 import Row from "./Row";
 import Summary from "./Summary";
 import { useMediaQuery } from "react-responsive";
+import Loader from "../../components/loader";
 
 // Meta data
 const title = "Your cart - Mike shop";
@@ -14,12 +16,17 @@ const author = "Youngking";
 const tableCell = "text-left py-5";
 
 const Cart = () => {
+  const [loading, setLoading] = useState(false);
   const mobileScreen = useMediaQuery({ query: "(max-width: 600px)" });
   const { products } = useAppSelector((state) => state.cart);
 
+  useEffect(() => {
+    setLoading(false);
+  }, []);
   return (
     <main>
       <SEO title={title} desc={desc} keywords={keywords} author={author} />
+      {loading && <Loader />}
       <section className="w-full min-h-screen pt-20">
         <Container>
           <div className="py-10">
@@ -46,7 +53,7 @@ const Cart = () => {
                   </tbody>
                 </table>
               </div>
-              <Summary />
+              <Summary setLoading={setLoading} />
             </div>
           </div>
         </Container>
