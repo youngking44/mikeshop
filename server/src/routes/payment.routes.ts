@@ -95,7 +95,7 @@ router.post('/webhook', raw({ type: 'application/json' }), (req, res) => {
   const data = req.body.data.object;
   const eventType = req.body.type;
 
-  if (eventType === 'checkout.session.completed') {
+  if (eventType === 'payment_intent.succeeded') {
     stripe.customers
       .retrieve(data.customer)
       .then((customer: Stripe.Customer) => {
