@@ -14,7 +14,7 @@ export const getUserHandler = async (req: Request, res: Response) => {
   }
 };
 
-export const getAllusersHandler = async (req: Request, res: Response) => {
+export const getAllUsersHandler = async (req: Request, res: Response) => {
   try {
     const users = await getAllUsers();
     res.status(200).json(users);
