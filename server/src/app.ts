@@ -7,11 +7,13 @@ import authRouter from './routes/auth.routes';
 import userRouter from './routes/user.routes';
 import productRouter from './routes/product.routes';
 import paymentRouter from './routes/payment.routes';
+import config from "config"
 
 const app = express();
 
+const clientUrl = config.get<string>("clientUrl")
 const corsOptions = {
-  origin: 'https://youngking-mikeshop.onrender.com',
+  origin: clientUrl,
   // origin: 'http://localhost:5173',
   credentials: true,
 };
